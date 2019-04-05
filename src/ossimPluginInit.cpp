@@ -9,11 +9,6 @@
 //  $Id$
 #include <ossim/plugin/ossimSharedObjectBridge.h>
 #include <ossim/plugin/ossimPluginConstants.h>
-#include <ossim/base/ossimObjectFactoryRegistry.h>
-#include <ossim/imaging/ossimImageHandlerRegistry.h>
-#include <ossim/projection/ossimProjectionFactoryRegistry.h>
-//#include <ossimPluginProjectionFactory.h>
-//#include <ossimPluginReaderFactory.h>
 
 
 namespace ossimplugins
@@ -21,15 +16,6 @@ namespace ossimplugins
    static void setDescription(ossimString& description)
    {
       description = "OSSIM HelloWorld Plugin\n\n";
-      std::vector<ossimString> projectionTypes;
-
-      // ossimPluginProjectionFactory::instance()->getTypeNameList(projectionTypes);
-      // ossim_uint32 idx = 0;
-      // description = "Projecitons Supported:\n\n";
-      // for(idx = 0; idx < projectionTypes.size();++idx)
-      // {
-      //    description += projectionTypes[idx] + "\n";
-      // }
    }
 
 
@@ -65,29 +51,12 @@ namespace ossimplugins
 
          *info = &myInfo;
 
-         /** Register the readers... */
-         // ossimImageHandlerRegistry::instance()->
-         //    registerFactory(ossimPluginReaderFactory::instance());
-
-         /**
-          * Register the projection factory.
-          * Note that this must be pushed to the front of the factory or bilinear
-          * projection will be picked up.
-          */
-         // ossimProjectionFactoryRegistry::instance()->
-         //    registerFactoryToFront(ossimPluginProjectionFactory::instance());
-
          setDescription(theDescription);
       }
 
       /* Note symbols need to be exported on windoze... */
       OSSIM_PLUGINS_DLL void ossimSharedLibraryFinalize()
       {
-         // ossimImageHandlerRegistry::instance()->
-         //    unregisterFactory(ossimPluginReaderFactory::instance());
-
-         // ossimProjectionFactoryRegistry::instance()->
-         //    unregisterFactory(ossimPluginProjectionFactory::instance());
       }
 
    }
